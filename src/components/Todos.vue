@@ -14,6 +14,9 @@
                 </li>
             </ul>
         </div>
+        <footer class="footer">
+            <span class="todo-count"><strong>{{ remaining }}</strong> tâche<span v-if="remaining >= 2">s</span> à faire</span>
+        </footer>
     </section>
 </template>
 
@@ -35,6 +38,11 @@
                     name: this.newTodo
                 })
                 this.newTodo = ''
+            }
+        },
+        computed: {
+            remaining () {
+                return this.todos.filter(todo => !todo.completed).length
             }
         }
     }
